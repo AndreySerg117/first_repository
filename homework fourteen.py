@@ -1,3 +1,18 @@
+﻿"""
+зауважте, що значення, що зберігається в кожному елементі - теж словник, і доступ до вкладеного списку 
+здійснюється за механізмом 
+student[outer_dict_key][inner_dict_key]
+
+Є дані студентів (комбінація імені та прізвища унікальна), що зберігаються за допомогою словника
+1 - програмно добавити одного студента, з заповненням усіх полів (вік - від 18 до 40, цілочисельне значення, 
+    бал від 0 до 100 (інт чи флоат)
+2 - створити і вивести на екран список студентів (імя та прізвище та середній бал), у яких середній бал більше 90
+    сам формат наповнення цього списку up to you
+3 - визначити середній бал по групі
+4 - при відсутності номеру телефону у студента записати номер батьків (номер на ваш вибір)
+
+не забувайте виводити інформаційні повідомлення щодо інформації, яку ви виводите
+"""
 students = {
     'Іван Петров': {
         'Пошта': 'Ivan@gmail.com',
@@ -18,20 +33,42 @@ students = {
         'Середній бал': 80
     },
 }
+# ваш код нижче !!!!!!!! вище нічого не змінюємо
 
-eighteen_student3 = students['Маша Кера']['Вік']
-if 40 >= eighteen_student3 >= 18:
-    print(students['Маша Кера'])
+# Пункт 1
+students['Алекс Туров'] = {
+    'Пошта': 'Alex@gmail.com',
+    'Вік': 15,
+    'Номер телефону': '+381029384756',
+    'Середній бал': 100
+}
 
-if students['Іван Петров']['Середній бал'] > 90:
-    print(f'Іван Петров {students['Іван Петров']['Середній бал']}')
+# Пункт 2
+best_students = []
+for student, value in students.items():
+    # print(student)
+    # print(value['Середній бал'])
+    if value['Середній бал'] >= 90:
+        best_students.append(student)
+print(best_students)
 
-average_score = students['Іван Петров']['Середній бал']
-average_score2 = students['Женя Курич']['Середній бал']
-average_score3 = students['Маша Кера']['Середній бал']
-sum_score = (average_score + average_score2 + average_score3)
-average_sum = (sum_score // 3)
-print(average_sum)
+# Пункт 3
+total_points = 0
+total_students = 0
+for student in students:
+    total_students += 1
+for value in students.values():
+    total_points += value['Середній бал']
+print(total_points / total_students)
 
-if students['Женя Курич']['Номер телефону'] == None:
-    print(f'+1234567890')
+# Пункт 4
+for student, value in students.items():
+    number_phone = value['Номер телефону']
+    if value['Номер телефону'] == None:
+        students[student] = {
+            'Пошта': 'Geka@gmail.com',
+            'Вік': 16,
+            'Номер батьків': '+1234567890',
+            'Середній бал': 64.5
+        }
+print(students)
