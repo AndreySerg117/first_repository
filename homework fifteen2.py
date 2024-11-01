@@ -25,4 +25,4 @@ with open('phone.png', mode='wb') as file:
 
 for product in products:
     if product.get('brand') == 'TechGear':
-        print(product['id'])
+        print(product['id'])git
